@@ -1,6 +1,6 @@
 <?php
 require_once "../classes/class.getCart.inc";
-
-//get cart logic
-$getCart = new GetCart();
-echo $getCart->getCartData();
+// transforma o JSON enviado no params para um array
+$params = json_decode($_REQUEST["params"], true);
+$getCart = new getCart($params);
+echo json_encode($getCart->executeAPI());

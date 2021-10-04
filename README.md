@@ -29,12 +29,47 @@ Já o backend foi feito em PHP, utilizando um banco de dados PostgreSQL para per
 
 Para as requisições é recomendado o uso do método http GET como padrão.
 
+Exemplo de URL para consumo da API `getCart`: `http://localhost:3000/api/getCart?params={"user_id":"USER_1"}`
+
 ## getCart
 Retorna todos os dados do carrinho.
 
 - **URL**: `localhost:3000/api/getCart` 
-- **Parâmetros**: {} 
-- **Retorno**: {}
+- **Parâmetros**: Enviar um JSON em formato de string. O nome do parâmetro contendo o JSON deve ser `params` e deve seguir a estrutura: <pre>{
+    user_id: _id do usuario que está vinculado ao carrinho_
+}</pre>
+- **Retorno**: <pre>{
+    status: _inteiro_,
+    message: _texto_ ,
+    cartData: {
+      items: {
+        0: {
+          code: "item1",
+          quantity: 1,
+          value: 0.00,
+          total: 0.00
+        }
+        1: {
+          code: "item2",
+          quantity: 2,
+          value: 0.00,
+          total: 0.00
+        }
+        2: ...
+      }
+      coupon_discount: 10,
+      coupon_code: 'abc',
+      totalItensValue: 0.00
+      totalWithDiscount: 0.00
+    }
+}</pre>
+**totalItensValue**: valor total da quantidade de itens multiplicado por seus valores, sem aplicar cupom <br>
+**totalWithDiscount**: valor total com aplicação de cupom; valor final do carrinho <br>
+- **Lista de status**:
+  - **1**: Sucesso
+  - **-1**: Parâmetros incorretos
+  - **-2**: Carrinho não existente
+  - **-3**: Carrinho está vazio
 
 ## addCoupon
 Adiciona um cupom de desconto ao carrinho.
@@ -45,8 +80,9 @@ Adiciona um cupom de desconto ao carrinho.
     coupon_code: _código do cupom_
 }</pre>
 - **Retorno**: <pre>{
-    status: _inteiro_
+    status: _inteiro_,
     message: _texto_ 
+    }
 }</pre>
 
 - **Lista de status**:
@@ -63,8 +99,21 @@ Limpa todos os itens e cupons do carrinho.
     user_id: _id do usuario que está vinculado ao carrinho_
 }</pre>
 - **Retorno**: <pre>{
-    status: _inteiro_
-    message: _texto_ 
+    status: _inteiro_,
+    message: _texto_ ,
+    cartData: {
+      items: {
+        0: {
+          name: "item1",
+          quantity: 1,
+          value: R$0.00,
+          total: R$0.00
+        }
+      }
+    couponDiscount: %,
+    couponCode: abc,
+    total: R$0.00
+    }
 }</pre>
 
 - **Lista de status**:
@@ -84,8 +133,21 @@ Adiciona um item ao carrinho.
     item_quantity: _quantidade do item_
 }</pre>
 - **Retorno**: <pre>{
-    status: _inteiro_
-    message: _texto_ 
+    status: _inteiro_,
+    message: _texto_ ,
+    cartData: {
+      items: {
+        0: {
+          name: "item1",
+          quantity: 1,
+          value: R$0.00,
+          total: R$0.00
+        }
+      }
+    couponDiscount: %,
+    couponCode: abc,
+    total: R$0.00
+    }
 }</pre>
 
 - **Lista de status**:
@@ -106,8 +168,21 @@ Remove um item do carrinho.
     item_code: _código do item_
 }</pre>
 - **Retorno**: <pre>{
-    status: _inteiro_
-    message: _texto_ 
+    status: _inteiro_,
+    message: _texto_ ,
+    cartData: {
+      items: {
+        0: {
+          name: "item1",
+          quantity: 1,
+          value: R$0.00,
+          total: R$0.00
+        }
+      }
+    couponDiscount: %,
+    couponCode: abc,
+    total: R$0.00
+    }
 }</pre>
 
 - **Lista de status**:
@@ -121,5 +196,35 @@ Remove um item do carrinho.
 Atualiza a quantidade de um item do carrinho.
 
 - **URL**: `localhost:3000/api/updateItem`
-- **Parâmetros**: {}
-- **Retorno**: {}
+- **Parâmetros**: Enviar um JSON em formato de string. O nome do parâmetro contendo o JSON deve ser `params` e deve seguir a estrutura: <pre>{
+    user_id: _id do usuario que adicionou o item ao carrinho_,
+    item_code: _código do item_,
+    item_quantity: _nova quantidade do item_
+}</pre>
+- **Retorno**: <pre>{
+    status: _inteiro_,
+    message: _texto_ ,
+    cartData: {
+      items: {
+        0: {
+          name: "item1",
+          quantity: 1,
+          value: R$0.00,
+          total: R$0.00
+        }
+      }
+    couponDiscount: %,
+    couponCode: abc,
+    total: R$0.00
+    }
+}</pre>
+
+- **Lista de status**:
+  - **1**: Sucesso
+  - **-1**: Parâmetros incorretos
+  - **-2**: Carrinho não existe
+  - **-3**: Item não existente no estoque
+  - **-4**: Parâmetro item_quantity menor ou igual a 0
+  - **-5**: Quantidade do item não disponível no estoque
+  - **-6**: Item não existe no carrinho
+  - **-7**: Não foi possível atualizar a quantidade do item no carrinho
