@@ -58,8 +58,20 @@ Adiciona um cupom de desconto ao carrinho.
 Limpa todos os itens e cupons do carrinho.
 
 - **URL**: `localhost:3000/api/clearCart`
-- **Parâmetros**: {}
-- **Retorno**: {}
+- **Parâmetros**: Enviar um JSON em formato de string. O nome do parâmetro contendo o JSON deve ser `params` e deve seguir a estrutura: <pre>{
+    user_id: _id do usuario que está vinculado ao carrinho_
+}</pre>
+- **Retorno**: <pre>{
+    status: _inteiro_
+    message: _texto_ 
+}</pre>
+
+- **Lista de status**:
+  - **1**: Sucesso
+  - **-1**: Parâmetros incorretos
+  - **-2**: Carrinho não existente
+  - **-3**: Não foi possível limpar os itens do carrinho
+  - **-4**: Não foi possível limpar o cupom do carrinho
 
 ## addItem
 Adiciona um item ao carrinho.
