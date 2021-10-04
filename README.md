@@ -8,11 +8,11 @@ Passo a passo para clonar o repositório e utilizar o docker compose para subir 
 - Git
 - Docker Desktop
 - Portas que devem estar livres para que o ambiente rode com êxito:
-- - 5432 - Porta utilizada pela base de dados PostgreSQL
-- - 80 - Porta utilizada pelo PHP/Apache
-- - 443 - Porta utilizada pelo PHP/Apache
-- - 3080 - Porta utilizada pelos serviços NodeJS
-- - 3000 - Porta utilizada pelo framework NextJS
+  - 5432 - Porta utilizada pela base de dados PostgreSQL
+  - 80 - Porta utilizada pelo PHP/Apache
+  - 443 - Porta utilizada pelo PHP/Apache
+  - 3080 - Porta utilizada pelos serviços NodeJS
+  - 3000 - Porta utilizada pelo framework NextJS
 ## Subindo a aplicação
 - Clonar o repositório em uma pasta qualquer
 - Acessar a pasta raíz e abrir um terminal de comando
