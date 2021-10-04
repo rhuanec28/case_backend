@@ -31,56 +31,56 @@ Para as requisições é recomendado o uso do método http POST como padrão.
 ## getCart
 Retorna todos os dados do carrinho.
 
-**URL**: `localhost:3000/api/getCart`
-**Parâmetros**: {}
-**Retorno**: {}
+- **URL**: `localhost:3000/api/getCart` 
+- **Parâmetros**: {} 
+- **Retorno**: {}
 
 ## addCoupon
 Adiciona um cupom de desconto ao carrinho.
 
-**URL**: `localhost:3000/api/addCoupon`
-**Parâmetros**: {}
-**Retorno**: {}
+- **URL**: `localhost:3000/api/addCoupon`
+- **Parâmetros**: {}
+- **Retorno**: {}
 
 ## clearCart
 Limpa todos os itens e cupons do carrinho.
 
-**URL**: `localhost:3000/api/clearCart`
-**Parâmetros**: {}
-**Retorno**: {}
+- **URL**: `localhost:3000/api/clearCart`
+- **Parâmetros**: {}
+- **Retorno**: {}
 
 ## addItem
 Adiciona um item ao carrinho.
 
-**URL**: `localhost:3000/api/addItem`
-**Parâmetros**: Enviar um JSON em formato de string. O nome do parâmetro contendo o JSON deve ser `params` e deve seguir a estrutura: {
-  user_id: _id do usuario que adicionou o item ao carrinho_,
-  item_code: _código do item_
-  item_quantity: _quantidade do item_
-}
-**Retorno**: {
-  status: _inteiro_
-  message: _texto_
-}
+- **URL**: `localhost:3000/api/addItem`
+- **Parâmetros**: Enviar um JSON em formato de string. O nome do parâmetro contendo o JSON deve ser `params` e deve seguir a estrutura: <pre>{
+    user_id: _id do usuario que adicionou o item ao carrinho_,
+    item_code: _código do item_
+    item_quantity: _quantidade do item_
+}</pre>
+- **Retorno**: <pre>{
+    status: _inteiro_
+    message: _texto_ 
+}</pre>
 
-Status:
-- 1: Sucesso
-- -1: Parâmetros incorretos
-- -2: Item não existente no estoque
-- -3: Quantidade do item não disponível no estoque
-- -4: Item já existe no carrinho
-- -5: Não foi possível adicionar o item ao carrinho
+- **Lista de status**:
+  - **1**: Sucesso
+  - **-1**: Parâmetros incorretos
+  - **-2**: Item não existente no estoque
+  - **-3**: Quantidade do item não disponível no estoque
+  - **-4**: Item já existe no carrinho
+  - **-5**: Não foi possível adicionar o item ao carrinho
 
 ## removeItem
 Remove um item do carrinho.
 
-**URL**: `localhost:3000/api/removeItem`
-**Parâmetros**: {}
-**Retorno**: {}
+- **URL**: `localhost:3000/api/removeItem`
+- **Parâmetros**: {}
+- **Retorno**: {}
 
 ## updateItem
 Atualiza a quantidade de um item do carrinho.
 
-**URL**: `localhost:3000/api/updateItem`
-**Parâmetros**: {}
-**Retorno**: {}
+- **URL**: `localhost:3000/api/updateItem`
+- **Parâmetros**: {}
+- **Retorno**: {}
