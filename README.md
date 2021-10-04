@@ -18,6 +18,7 @@ Passo a passo para clonar o repositório e utilizar o docker compose para subir 
 - Acessar a pasta raíz e abrir um terminal de comando
 - Executar o comando `docker compose up` _(pode levar alguns minutos para montar a imagem e subir os containers)_
 - Acessar `localhost:3000` e verificar se foi exibida a mensagem "Hello world"
+- Seguir a documentação abaixo para realizar o consumo das API's GET
 
 # Documentação das API's
 Todas as API's possuem seu retorno em JSON e também esperam parâmetros enviados em JSON.
@@ -79,7 +80,7 @@ Adiciona um item ao carrinho.
 - **URL**: `localhost:3000/api/addItem`
 - **Parâmetros**: Enviar um JSON em formato de string. O nome do parâmetro contendo o JSON deve ser `params` e deve seguir a estrutura: <pre>{
     user_id: _id do usuario que adicionou o item ao carrinho_,
-    item_code: _código do item_
+    item_code: _código do item_,
     item_quantity: _quantidade do item_
 }</pre>
 - **Retorno**: <pre>{
@@ -100,8 +101,21 @@ Adiciona um item ao carrinho.
 Remove um item do carrinho.
 
 - **URL**: `localhost:3000/api/removeItem`
-- **Parâmetros**: {}
-- **Retorno**: {}
+- **Parâmetros**: Enviar um JSON em formato de string. O nome do parâmetro contendo o JSON deve ser `params` e deve seguir a estrutura: <pre>{
+    user_id: _id do usuario que adicionou o item ao carrinho_,
+    item_code: _código do item_
+}</pre>
+- **Retorno**: <pre>{
+    status: _inteiro_
+    message: _texto_ 
+}</pre>
+
+- **Lista de status**:
+  - **1**: Sucesso
+  - **-1**: Parâmetros incorretos
+  - **-2**: Carrinho não existe
+  - **-3**: Item não existe no carrinho
+  - **-4**: Não foi possível remover o item do carrinho
 
 ## updateItem
 Atualiza a quantidade de um item do carrinho.

@@ -8,7 +8,7 @@ class addItem extends defaultAPI {
             $this->setMessage("Params cannot be an empty array in: addItem API");
         } else if (!$this->checkItemExists()) {
             $this->setStatus(-2);
-            $this->setMessage("Item does not exists in stock");
+            $this->setMessage("Item does not exist in stock");
         } else if ($this->getParams("item_quantity") <= 0) {
             $this->setStatus(-3);
             $this->setMessage("Value 'item_quantity' cannot be 0 or less than 1");
