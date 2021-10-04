@@ -1,0 +1,32 @@
+
+version: '3.1'
+services:
+  loja:
+    build: .
+    container_name: loja
+    restart: always
+    ports:
+    - 80:80
+    - 443:443
+    - 3080:3080
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=111111
+      - POSTGRES_DB=loja_integrada
+    volumes:
+    - ./pages:/usr/app/pages
+    - ./www:/var/www/html/
+    links:
+    - db
+  db:
+    image: postgres:13.1
+    container_name: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=111111
+      - POSTGRES_DB=loja_integrada
+    volumes:
+      - ./database:/docker-entrypoint-initdb.d/
+    ports:
+      - 5432:5432
