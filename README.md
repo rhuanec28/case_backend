@@ -35,14 +35,19 @@ Exemplo de URL para consumo da API `getCart`: `http://localhost:3000/api/getCart
 Retorna todos os dados do carrinho.
 
 - **URL**: `localhost:3000/api/getCart` 
-- **Parâmetros**: Enviar um JSON em formato de string. O nome do parâmetro contendo o JSON deve ser `params` e deve seguir a estrutura: <pre>{
+- **Parâmetros**: Enviar um JSON em formato de string. O nome do parâmetro contendo o JSON deve ser `params` e deve seguir a estrutura: 
+```
+{
     user_id: _id do usuario que está vinculado ao carrinho_
-}</pre>
-- **Retorno**: <pre>{
+}
+```
+- **Retorno**: 
+```
+{
     status: _inteiro_,
     message: _texto_ ,
     cartData: {
-      items: {
+      itens: {
         0: {
           code: "item1",
           quantity: 1,
@@ -62,7 +67,8 @@ Retorna todos os dados do carrinho.
       totalItensValue: 0.00
       totalWithDiscount: 0.00
     }
-}</pre>
+}
+```
 **totalItensValue**: valor total da quantidade de itens multiplicado por seus valores, sem aplicar cupom <br>
 **totalWithDiscount**: valor total com aplicação de cupom; valor final do carrinho <br>
 - **Lista de status**:
@@ -75,15 +81,20 @@ Retorna todos os dados do carrinho.
 Adiciona um cupom de desconto ao carrinho.
 
 - **URL**: `localhost:3000/api/addCoupon`
-- **Parâmetros**: Enviar um JSON em formato de string. O nome do parâmetro contendo o JSON deve ser `params` e deve seguir a estrutura: <pre>{
+- **Parâmetros**: Enviar um JSON em formato de string. O nome do parâmetro contendo o JSON deve ser `params` e deve seguir a estrutura: 
+```
+{
     user_id: _id do usuario que está vinculado ao carrinho_,
     coupon_code: _código do cupom_
-}</pre>
-- **Retorno**: <pre>{
+}
+```
+- **Retorno**: 
+```
+{
     status: _inteiro_,
     message: _texto_ 
-    }
-}</pre>
+}
+```
 
 - **Lista de status**:
   - **1**: Sucesso
@@ -95,26 +106,19 @@ Adiciona um cupom de desconto ao carrinho.
 Limpa todos os itens e cupons do carrinho.
 
 - **URL**: `localhost:3000/api/clearCart`
-- **Parâmetros**: Enviar um JSON em formato de string. O nome do parâmetro contendo o JSON deve ser `params` e deve seguir a estrutura: <pre>{
+- **Parâmetros**: Enviar um JSON em formato de string. O nome do parâmetro contendo o JSON deve ser `params` e deve seguir a estrutura: 
+```
+{
     user_id: _id do usuario que está vinculado ao carrinho_
-}</pre>
-- **Retorno**: <pre>{
+}
+```
+- **Retorno**: 
+```
+{
     status: _inteiro_,
-    message: _texto_ ,
-    cartData: {
-      items: {
-        0: {
-          name: "item1",
-          quantity: 1,
-          value: R$0.00,
-          total: R$0.00
-        }
-      }
-    couponDiscount: %,
-    couponCode: abc,
-    total: R$0.00
-    }
-}</pre>
+    message: _texto_ 
+}
+```
 
 - **Lista de status**:
   - **1**: Sucesso
@@ -127,28 +131,21 @@ Limpa todos os itens e cupons do carrinho.
 Adiciona um item ao carrinho.
 
 - **URL**: `localhost:3000/api/addItem`
-- **Parâmetros**: Enviar um JSON em formato de string. O nome do parâmetro contendo o JSON deve ser `params` e deve seguir a estrutura: <pre>{
+- **Parâmetros**: Enviar um JSON em formato de string. O nome do parâmetro contendo o JSON deve ser `params` e deve seguir a estrutura: 
+```
+{
     user_id: _id do usuario que adicionou o item ao carrinho_,
     item_code: _código do item_,
     item_quantity: _quantidade do item_
-}</pre>
-- **Retorno**: <pre>{
+}
+```
+- **Retorno**: 
+```
+{
     status: _inteiro_,
-    message: _texto_ ,
-    cartData: {
-      items: {
-        0: {
-          name: "item1",
-          quantity: 1,
-          value: R$0.00,
-          total: R$0.00
-        }
-      }
-    couponDiscount: %,
-    couponCode: abc,
-    total: R$0.00
-    }
-}</pre>
+    message: _texto_ 
+}
+```
 
 - **Lista de status**:
   - **1**: Sucesso
@@ -163,27 +160,20 @@ Adiciona um item ao carrinho.
 Remove um item do carrinho.
 
 - **URL**: `localhost:3000/api/removeItem`
-- **Parâmetros**: Enviar um JSON em formato de string. O nome do parâmetro contendo o JSON deve ser `params` e deve seguir a estrutura: <pre>{
+- **Parâmetros**: Enviar um JSON em formato de string. O nome do parâmetro contendo o JSON deve ser `params` e deve seguir a estrutura: 
+```
+{
     user_id: _id do usuario que adicionou o item ao carrinho_,
     item_code: _código do item_
-}</pre>
-- **Retorno**: <pre>{
+}
+```
+- **Retorno**: 
+```
+{
     status: _inteiro_,
-    message: _texto_ ,
-    cartData: {
-      items: {
-        0: {
-          name: "item1",
-          quantity: 1,
-          value: R$0.00,
-          total: R$0.00
-        }
-      }
-    couponDiscount: %,
-    couponCode: abc,
-    total: R$0.00
-    }
-}</pre>
+    message: _texto_ 
+}
+```
 
 - **Lista de status**:
   - **1**: Sucesso
@@ -196,28 +186,21 @@ Remove um item do carrinho.
 Atualiza a quantidade de um item do carrinho.
 
 - **URL**: `localhost:3000/api/updateItem`
-- **Parâmetros**: Enviar um JSON em formato de string. O nome do parâmetro contendo o JSON deve ser `params` e deve seguir a estrutura: <pre>{
+- **Parâmetros**: Enviar um JSON em formato de string. O nome do parâmetro contendo o JSON deve ser `params` e deve seguir a estrutura: 
+```
+{
     user_id: _id do usuario que adicionou o item ao carrinho_,
     item_code: _código do item_,
     item_quantity: _nova quantidade do item_
-}</pre>
-- **Retorno**: <pre>{
+}
+```
+- **Retorno**: 
+```
+{
     status: _inteiro_,
-    message: _texto_ ,
-    cartData: {
-      items: {
-        0: {
-          name: "item1",
-          quantity: 1,
-          value: R$0.00,
-          total: R$0.00
-        }
-      }
-    couponDiscount: %,
-    couponCode: abc,
-    total: R$0.00
-    }
-}</pre>
+    message: _texto_ 
+}
+```
 
 - **Lista de status**:
   - **1**: Sucesso
