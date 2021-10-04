@@ -1,6 +1,6 @@
 /**
  * API para adicionar um item e sua quantidade a um carrinho
- * request.query possui os parâmetros enviados via POST/GET e deve conter um JSON params, seguindo o padrão:
+ * request.query possui os parâmetros enviados via GET e deve conter um JSON params em formato de string, seguindo o padrão:
  * params = {
  *  user_id: 'id do usuario logado/sessao autenticada (teoricamente pode ser qualquer ID, já que não existe uma validação de sessão. Ao ser informado um id de usuário que ainda não possui um carrinho com itens, um novo carrinho é criado para o usuário)
  *  item_code: 'código do item (como se fosse um código único do produto que foi cadastrado por alguém)
