@@ -1,3 +1,0 @@
-<?php
-
-//add coupon logic

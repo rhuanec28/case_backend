@@ -1,10 +1,21 @@
+/**
+ * API para adicionar um item e sua quantidade a um carrinho
+ * request.query possui os parâmetros enviados via POST/GET e deve conter um JSON params, seguindo o padrão:
+ * params = {
+ *  user_id: 'id do usuario logado/sessao autenticada (teoricamente pode ser qualquer ID, já que não existe uma validação de sessão. Ao ser informado um id de usuário que ainda não possui um carrinho com itens, um novo carrinho é criado para o usuário)
+ *  item_code: 'código do item (como se fosse um código único do produto que foi cadastrado por alguém)
+ *  item_quantity: quantidade do item adicionado ao carrinho
+ * }
+ * @param {} request - parâmetro padrão para tratar o request enviado a api
+ * @param {} response - parâmetro padrão para tratar a resposta da api
+ */
 const AddItemAPI = async function (request, response) {
     const headers = { 'Content-Type': 'application/json' };
     const res = await fetch("http://localhost:80/endpoints/add_item_cart.php", {
         method: 'POST',
         headers,
         body: JSON.stringify({
-            query: request.query
+            params: request.query.params
         }),
     });
     const json = await res.json();

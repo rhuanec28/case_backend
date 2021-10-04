@@ -10,11 +10,14 @@ services:
     - 443:443
     - 3080:3080
     environment:
+      # variaveis de ambiente que são utilizadas ao realizar a conexão com o banco
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=111111
       - POSTGRES_DB=loja_integrada
     volumes:
+    # arquivos de endpoint das API's do nextjs
     - ./pages:/usr/app/pages
+    # arquivos php sendo copiadas para a pasta padrão utilizada pelo apache
     - ./www:/var/www/html/
     links:
     - db
@@ -23,10 +26,12 @@ services:
     container_name: postgres
     restart: always
     environment:
+      # variaveis indicando à imagem do postgres que o banco deve ser criado com essas configurações
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=111111
       - POSTGRES_DB=loja_integrada
     volumes:
+      # copiando o arquivo inicial de configuração do banco de dados
       - ./database:/docker-entrypoint-initdb.d/
     ports:
       - 5432:5432
