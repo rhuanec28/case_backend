@@ -9,6 +9,7 @@ GRANT USAGE ON ALL SEQUENCES IN SCHEMA public TO postgres;
 -- Tabela de itens, que possui os itens que podem ser adicionados ao carrinho
 -- Para o ID gerado automaticamente utilizei a coluna de tipo Serial, por motivos de simplicidade
 -- Para o preço dos itens foi utilizada um valor forçado com apenas 2 casas decimais por motivos de simplicidade, já que em transações mais precisas sei que o banco pode arredondar o valor de maneira incorreta.
+-- Stock é a quantidade do item em estoque
 CREATE TABLE ITEM (
    ID SERIAL PRIMARY KEY,
    CODE VARCHAR (50) NOT NULL,
@@ -16,13 +17,25 @@ CREATE TABLE ITEM (
    STOCK INT NOT NULL
 );
 
--- Tabela contendo os carrinhos para cada usuário
--- Utilizei uma coluna única chamada USER para simular um carrinho por sessão/usuário logado
-CREATE TABLE CART (
+-- Tabela contendo os cupons de desconto
+-- A coluna discount é um inteiro que pode variar de 0 a 100, sendo 0 igual a 0% de desconto e 100 igual a 100% de desconto
+CREATE TABLE COUPON (
    ID SERIAL PRIMARY KEY,
-   USER_ID VARCHAR (50) UNIQUE NOT NULL
+   CODE VARCHAR (50) NOT NULL,
+   DISCOUNT INT NOT NULL
 );
 
+-- Tabela contendo os carrinhos para cada usuário
+-- Utilizei uma coluna única chamada USER para simular um carrinho por sessão/usuário logado
+-- O cupon é relacionado diretamente ao carrinho, sendo assim o limite de coupon é 1 para cada carrinho
+CREATE TABLE CART (
+   ID SERIAL PRIMARY KEY,
+   USER_ID VARCHAR (50) UNIQUE NOT NULL,
+   COUPON_ID INT,
+   FOREIGN KEY (COUPON_ID) REFERENCES COUPON (ID)
+);
+
+-- Tabela contendo os itens e suas quantidades em cada carrinho
 CREATE TABLE CART_ITEM (
    ITEM_ID INT,
    CART_ID INT,
@@ -33,7 +46,6 @@ CREATE TABLE CART_ITEM (
 );
 
 -- Itens fictícios para mock
--- Stock é a quantidade do item em estoque
 INSERT INTO ITEM (CODE, PRICE, STOCK) VALUES ('ITEM_1', 1.99, 50);
 INSERT INTO ITEM (CODE, PRICE, STOCK) VALUES ('ITEM_2', 2.00, 0);
 INSERT INTO ITEM (CODE, PRICE, STOCK) VALUES ('ITEM_3', 2.50, 10);

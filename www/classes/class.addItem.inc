@@ -9,14 +9,17 @@ class addItem extends defaultAPI {
         } else if (!$this->checkItemExists()) {
             $this->setStatus(-2);
             $this->setMessage("Item does not exists in stock");
-        } else if (!$this->checkItemQuantityInStock()) {
+        } else if ($this->getParams("item_quantity") <= 0) {
             $this->setStatus(-3);
+            $this->setMessage("Value 'item_quantity' cannot be 0 or less than 1");
+        } else if (!$this->checkItemQuantityInStock()) {
+            $this->setStatus(-4);
             $this->setMessage("Item quantity not available in stock");
         } else if (!$this->checkItemInCart()) {
-            $this->setStatus(-4);
+            $this->setStatus(-5);
             $this->setMessage("Item already exists in cart");
         } else if (!$this->addItemToCart()) {
-            $this->setStatus(-5);
+            $this->setStatus(-6);
             $this->setMessage("Could not add item to cart");
         } else {
             $this->setMessage("Item added successfully to cart");
@@ -67,6 +70,11 @@ class addItem extends defaultAPI {
      * @return Boolean
      */
     private function checkItemInCart() {
+        //adiciona um novo carrinho, caso não exista
+        if (!$this->checkCartExists()) {
+            $this->newCart();
+        }
+
         $sql = "SELECT 1 FROM CART_ITEM WHERE CART_ID = $1 AND ITEM_ID = $2";
         $bind = [
             "cart_id"  => $this->getCartId("user_id"),
@@ -93,10 +101,6 @@ class addItem extends defaultAPI {
      * @return Boolean
      */
     private function addItemToCart() {
-        if (!$this->checkCartExists()) {
-            $this->newCart();
-        }
-
         $table = "cart_item";
         $insert = [
             "cart_id"  => $this->getCartId("user_id"),

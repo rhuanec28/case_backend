@@ -6,7 +6,7 @@ class defaultAPI {
     private $itemId;
     private $cartId;
 
-    public function __construct(array $params) {
+    public function __construct($params) {
         if (empty($params)) {
             $this->setStatus(-1);
         }
@@ -14,7 +14,7 @@ class defaultAPI {
         $this->setParams($params);
     }
 
-    public function setParams(array $params) {
+    public function setParams($params) {
         $this->params = $params;
     }
 
@@ -47,34 +47,48 @@ class defaultAPI {
     }
 
     public function getCartId(string $param) {
+        $cartId = "";
+
         if ($this->cartId != "") {
             return $this->cartId;
         }
 
         $sql = "SELECT ID FROM CART WHERE USER_ID = $1";
-        $bind = [$param => $this->getParams($param)];
+        $bind = [
+            $param => $this->getParams($param)
+        ];
         $data = _fetchData($sql, $bind);
-        $cartId = $data[0]["id"];
+        
+        if ($data) {
+            $cartId = $data[0]["id"];
+            $this->setCartId($cartId);
+        }
 
-        $this->setCartId($cartId);
         return $cartId;
     }
 
-    private function setCartId(string $cartid) {
-        $this->cartid = $cartid;
+    private function setCartId(string $cartId) {
+        $this->cartId = $cartId;
     }
 
     public function getItemId(string $param) {
+        $itemId = "";
+
         if ($this->itemId != "") {
             return $this->itemId;
         }
 
         $sql = "SELECT ID FROM ITEM WHERE CODE = $1";
-        $bind = [$param => $this->getParams($param)];
+        $bind = [
+            $param => $this->getParams($param)
+        ];
         $data = _fetchData($sql, $bind);
-        $itemId = $data[0]["id"];
+        
+        if ($data) {
+            $itemId = $data[0]["id"];
+            $this->setItemId($itemId);
+        }
 
-        $this->setItemId($itemId);
         return $itemId;
     }
 

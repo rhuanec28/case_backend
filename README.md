@@ -26,7 +26,7 @@ A parte que lida com as requisições e estruturação das API's foi toda feita 
 
 Já o backend foi feito em PHP, utilizando um banco de dados PostgreSQL para persistir os dados das requisições.
 
-Para as requisições é recomendado o uso do método http POST como padrão.
+Para as requisições é recomendado o uso do método http GET como padrão.
 
 ## getCart
 Retorna todos os dados do carrinho.
@@ -67,9 +67,11 @@ Adiciona um item ao carrinho.
   - **1**: Sucesso
   - **-1**: Parâmetros incorretos
   - **-2**: Item não existente no estoque
-  - **-3**: Quantidade do item não disponível no estoque
-  - **-4**: Item já existe no carrinho
-  - **-5**: Não foi possível adicionar o item ao carrinho
+  - **-3**: Parâmetro item_quantity menor ou igual a 0
+  - **-4**: Quantidade do item não disponível no estoque
+  - **-5**: Item já existe no carrinho
+  - **-6**: Não foi possível adicionar o item ao carrinho
+  - **-7**: Não foi possível adicionar o item ao carrinho
 
 ## removeItem
 Remove um item do carrinho.

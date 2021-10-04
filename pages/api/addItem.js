@@ -10,14 +10,7 @@
  * @param {} response - parâmetro padrão para tratar a resposta da api
  */
 const AddItemAPI = async function (request, response) {
-    const headers = { 'Content-Type': 'application/json' };
-    const res = await fetch("http://localhost:80/endpoints/add_item_cart.php", {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({
-            params: request.query.params
-        }),
-    });
+    const res = await fetch("http://localhost:80/endpoints/add_item_cart.php?params="+request.query.params);
     const json = await res.json();
 
     if (json.errors) {
