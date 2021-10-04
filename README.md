@@ -21,8 +21,11 @@ Passo a passo para clonar o repositório e utilizar o docker compose para subir 
 
 # Documentação das API's
 Todas as API's possuem seu retorno em JSON e também esperam parâmetros enviados em JSON.
+
 A parte que lida com as requisições e estruturação das API's foi toda feita utilizando o framework NextJS, que também utiliza o React como core.
+
 Já o backend foi feito em PHP, utilizando um banco de dados PostgreSQL para persistir os dados das requisições.
+
 Para as requisições é recomendado o uso do método http POST como padrão.
 
 ## getCart
