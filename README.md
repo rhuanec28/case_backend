@@ -19,6 +19,7 @@ Passo a passo para clonar o repositório e utilizar o docker compose para subir 
 - Acessar a pasta raíz e abrir um terminal de comando
 - Executar o comando `docker compose up` _(pode levar alguns minutos para montar a imagem e subir os containers)_
 - No terminal na pasta raiz, executar os comando `npm install next react react-dom` e `npm run dev`
+  - Tive alguns problemas para subir o NextJS como build em produção no docker, então tive que acabar deixando ele em modo dev localmente para rodar sem problemas. Nâo consegui tempo para ajustar essa parte do ambiente 😥
 - Acessar `localhost:3000` e verificar se foi exibida a mensagem "Hello world"
 - Seguir a documentação abaixo para realizar o consumo das API's GET
 
