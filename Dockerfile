@@ -11,6 +11,3 @@ COPY package*.json ./
 # instalando a lib do postgres para php, possibilitando a comunicação do backend com o banco de dados
 RUN docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
     && docker-php-ext-install pgsql pdo_pgsql
-
-# instalando o framework nextjs e dependencias do react
-RUN npm install next react react-dom
