@@ -14,6 +14,3 @@ RUN docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
 
 # instalando o framework nextjs e dependencias do react
 RUN npm install next react react-dom
-
-# iniciando o serviço do nextjs, fazendo o deploy do framework na porta 3000
-# CMD ["npm", "run", "dev"]

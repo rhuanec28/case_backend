@@ -43,20 +43,6 @@ class addCoupon extends defaultAPI {
     }
 
     /**
-     * Verifica se o item possui a quantidade em estoque que está sendo adicionada
-     * @return Boolean
-     */
-    private function checkItemQuantityInStock() {
-        $sql = "SELECT 1 FROM ITEM WHERE STOCK >= $1 AND CODE = $2";
-        $bind = [
-            "item_quantity" => $this->getParams("item_quantity"),
-            "code" => $this->getParams("item_code")
-        ];
-
-        return _recordExists($sql, $bind);
-    }
-
-    /**
      * Cria um novo carrinho para o usuário/sessão fictício
      * @return Boolean
      */

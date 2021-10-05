@@ -211,3 +211,28 @@ Atualiza a quantidade de um item do carrinho.
   - **-5**: Quantidade do item não disponível no estoque
   - **-6**: Item não existe no carrinho
   - **-7**: Não foi possível atualizar a quantidade do item no carrinho
+  
+## checkoutCart
+Finalizar a compra; realizar checkout do carrinho.
+
+- **URL**: `localhost:3000/api/checkoutCart`
+- **Parâmetros**: Enviar um JSON em formato de string. O nome do parâmetro contendo o JSON deve ser `params` e deve seguir a estrutura: 
+```
+{
+    user_id: _id do usuario que adicionou o item ao carrinho_
+```
+- **Retorno**: 
+```
+{
+    status: _inteiro_,
+    message: _texto_ 
+}
+```
+
+- **Lista de status**:
+  - **1**: Sucesso
+  - **-1**: Parâmetros incorretos
+  - **-2**: Carrinho não existe
+  - **-3**: Carrinho vazio
+  - **-4**: Cupom inválido ou inexistente
+  - **-5**: Item X não possui a quantidade desejada disponível no estoque
