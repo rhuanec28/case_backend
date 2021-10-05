@@ -7,6 +7,7 @@ Passo a passo para clonar o repositório e utilizar o docker compose para subir 
 ## Pré-requisitos:
 - Git
 - Docker Desktop
+- NodeJS instalado
 - Portas que devem estar livres para que o ambiente faça o deploy com êxito:
   - 5432 - Base de dados PostgreSQL
   - 80 - PHP/Apache
@@ -17,6 +18,7 @@ Passo a passo para clonar o repositório e utilizar o docker compose para subir 
 - Clonar o repositório em uma pasta qualquer
 - Acessar a pasta raíz e abrir um terminal de comando
 - Executar o comando `docker compose up` _(pode levar alguns minutos para montar a imagem e subir os containers)_
+- No terminal na pasta raiz, executar os comando `npm install next react react-dom` e `npm run dev`
 - Acessar `localhost:3000` e verificar se foi exibida a mensagem "Hello world"
 - Seguir a documentação abaixo para realizar o consumo das API's GET
 

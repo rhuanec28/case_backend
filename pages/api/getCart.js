@@ -8,7 +8,7 @@
  * @param {} response - parâmetro padrão para tratar a resposta da api
  */
  const GetCartAPI = async function (request, response) {
-    const res = await fetch("http://localhost:80/endpoints/get_cart.php?params="+request.query.params);
+    const res = await fetch("http://localhost:80/endpoints/get_cart_data.php?params="+request.query.params);
     const json = await res.json();
 
     if (json.errors) {
